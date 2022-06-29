@@ -1,5 +1,5 @@
-import '../../models/breed_model.dart';
+import '../../models/dogs_model.dart';
 
 abstract class DogsService {
-  Future<List<BreedModel>> getBreeds();
+  Future<List<DogsModel>> getBreeds();
 }

@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:app_desafio/app/data/models/breed_model.dart';
+import 'package:app_desafio/app/data/models/dogs_model.dart';
 import 'package:app_desafio/app/data/repositories/dogs/dogs_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

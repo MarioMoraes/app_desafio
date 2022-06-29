@@ -21,7 +21,7 @@ dependencies:
   equatable: ^2.0.3
   phosphor_flutter: ^1.4.0
   flutter_dotenv: ^5.0.2
-
+  loader: ^1.0.0
 
 
 

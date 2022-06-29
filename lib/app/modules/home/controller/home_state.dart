@@ -13,7 +13,7 @@ class HomeStateAcceptTravel extends HomeState {}
 class HomeStateAcceptedTravel extends HomeState {}
 
 class HomeStateLoaded extends HomeState {
-  final List<BreedModel> listBreed;
+  final List<DogsModel> listBreed;
 
   HomeStateLoaded({required this.listBreed});
 

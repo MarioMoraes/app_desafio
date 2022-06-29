@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:app_desafio/app/data/models/image_model.dart';
 import 'package:app_desafio/app/data/models/size_model.dart';
 
-class BreedModel {
+class DogsModel {
   int id;
   String name;
   String bredFor;
@@ -16,7 +16,7 @@ class BreedModel {
   SizeModel height;
   ImageModel image;
 
-  BreedModel({
+  DogsModel({
     required this.id,
     required this.name,
     required this.bredFor,
@@ -46,8 +46,8 @@ class BreedModel {
     };
   }
 
-  factory BreedModel.fromMap(Map<String, dynamic> map) {
-    return BreedModel(
+  factory DogsModel.fromMap(Map<String, dynamic> map) {
+    return DogsModel(
       id: map['id']?.toInt() ?? 0,
       name: map['name'] ?? '',
       bredFor: map['bred_for'] ?? '',
@@ -64,6 +64,6 @@ class BreedModel {
 
   String toJson() => json.encode(toMap());
 
-  factory BreedModel.fromJson(String source) =>
-      BreedModel.fromMap(json.decode(source));
+  factory DogsModel.fromJson(String source) =>
+      DogsModel.fromMap(json.decode(source));
 }

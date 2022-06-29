@@ -1,4 +1,6 @@
 import 'package:app_desafio/app/modules/home/controller/home_controller.dart';
+import 'package:app_desafio/app/modules/home/widgets/card_dog.dart';
+import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,11 +25,8 @@ class _HomePageState extends State<HomePage> {
     return BlocListener<HomeController, HomeState>(
       bloc: widget.homeController,
       listener: (context, state) {
-        if (state is HomeStateLoading) {
-          print('aqui');
-          const Center(
-            child: CircularProgressIndicator(),
-          );
+        if (state is HomeStateError) {
+          AsukaSnackbar.alert('Um Erro Ocorreu Ao Carregar Lista');
         }
       },
       child: Scaffold(
@@ -37,12 +36,28 @@ class _HomePageState extends State<HomePage> {
         body: BlocBuilder<HomeController, HomeState>(
           bloc: widget.homeController,
           builder: (context, state) {
+            if (state is HomeStateLoading) {
+              return const Center(
+                child: CircularProgressIndicator.adaptive(),
+              );
+            }
             if (state is HomeStateLoaded) {
-              return ListView.builder(
-                  itemCount: state.listBreed.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(title: Text(state.listBreed[index].name));
-                  });
+              return ListView.separated(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                itemCount: state.listBreed.length,
+                itemBuilder: (context, index) {
+                  return CardDog(
+                    name: state.listBreed[index].name,
+                    bredFor: state.listBreed[index].bredFor,
+                    lifeSpan: state.listBreed[index].lifeSpan,
+                    image: state.listBreed[index].image.url,
+                  );
+                },
+                separatorBuilder: (context, index) => const Divider(
+                  color: Colors.grey,
+                ),
+              );
             }
             return const SizedBox.shrink();
           },
