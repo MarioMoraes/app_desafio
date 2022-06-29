@@ -1,15 +1,16 @@
 import 'dart:developer';
 
+import 'package:app_desafio/app/data/models/cats_model.dart';
 import 'package:app_desafio/app/data/models/dogs_model.dart';
 import 'package:dio/dio.dart';
 
-import './dogs_service.dart';
+import 'breeds_service.dart';
 
-class DogsServiceImpl implements DogsService {
+class BreedsServiceImpl implements BreedsService {
   final Dio _dio = Dio();
 
   @override
-  Future<List<DogsModel>> getBreeds() async {
+  Future<List<DogsModel>> getDogs() async {
     try {
       final response = await _dio.get('https://api.thedogapi.com/v1/breeds');
 
@@ -18,8 +19,13 @@ class DogsServiceImpl implements DogsService {
           .toList();
       return listBreed;
     } on DioError catch (e, s) {
-      log('Erro Endpoint Breed', error: e, stackTrace: s);
+      log('Erro Endpoint Dogs', error: e, stackTrace: s);
       return [];
     }
+  }
+
+  @override
+  Future<List<CatsModel>> getCats() async {
+    return [];
   }
 }

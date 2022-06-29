@@ -13,11 +13,12 @@ class HomeStateAcceptTravel extends HomeState {}
 class HomeStateAcceptedTravel extends HomeState {}
 
 class HomeStateLoaded extends HomeState {
-  final List<DogsModel> listBreed;
+  final List<DogsModel>? listDogs;
+  final List<CatsModel>? listCats;
 
-  HomeStateLoaded({required this.listBreed});
+  HomeStateLoaded({this.listDogs, this.listCats});
 
-  List<Object> get props => [listBreed];
+  List<Object> get props => [listDogs!, listCats!];
 }
 
 class HomeStateError extends HomeState {}

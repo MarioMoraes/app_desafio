@@ -3,6 +3,7 @@ import 'package:app_desafio/app/modules/home/widgets/card_dog.dart';
 import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class HomePage extends StatefulWidget {
   final HomeController homeController;
@@ -14,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
   @override
   void initState() {
     super.initState();
@@ -33,36 +36,89 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: const Text('Home Page'),
         ),
-        body: BlocBuilder<HomeController, HomeState>(
-          bloc: widget.homeController,
-          builder: (context, state) {
-            if (state is HomeStateLoading) {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(),
-              );
-            }
-            if (state is HomeStateLoaded) {
-              return ListView.separated(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                itemCount: state.listBreed.length,
-                itemBuilder: (context, index) {
-                  return CardDog(
-                    name: state.listBreed[index].name,
-                    bredFor: state.listBreed[index].bredFor,
-                    lifeSpan: state.listBreed[index].lifeSpan,
-                    image: state.listBreed[index].image.url,
-                  );
+        body: _selectedIndex == 0
+            ? BlocBuilder<HomeController, HomeState>(
+                bloc: widget.homeController,
+                builder: (context, state) {
+                  if (state is HomeStateLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    );
+                  }
+                  if (state is HomeStateLoaded) {
+                    return ListView.separated(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      itemCount: state.listDogs!.length,
+                      itemBuilder: (context, index) {
+                        return CardDog(
+                          name: state.listDogs![index].name,
+                          bredFor: state.listDogs![index].bredFor,
+                          lifeSpan: state.listDogs![index].lifeSpan,
+                          image: state.listDogs![index].image.url,
+                        );
+                      },
+                      separatorBuilder: (context, index) => const Divider(
+                        color: Colors.grey,
+                      ),
+                    );
+                  }
+                  return const SizedBox.shrink();
                 },
-                separatorBuilder: (context, index) => const Divider(
-                  color: Colors.grey,
-                ),
-              );
-            }
-            return const SizedBox.shrink();
-          },
+              )
+            : BlocBuilder<HomeController, HomeState>(
+                bloc: widget.homeController,
+                builder: (context, state) {
+                  if (state is HomeStateLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    );
+                  }
+                  if (state is HomeStateLoaded) {
+                    return ListView.separated(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      itemCount: state.listDogs!.length,
+                      itemBuilder: (context, index) {
+                        return CardDog(
+                          name: state.listDogs![index].name,
+                          bredFor: state.listDogs![index].bredFor,
+                          lifeSpan: state.listDogs![index].lifeSpan,
+                          image: state.listDogs![index].image.url,
+                        );
+                      },
+                      separatorBuilder: (context, index) => const Divider(
+                        color: Colors.grey,
+                      ),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(PhosphorIcons.dog),
+              label: 'Dogs',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(PhosphorIcons.cat),
+              label: 'Cats',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          unselectedItemColor: Colors.grey,
+          iconSize: 20,
+          onTap: _onTap,
+          elevation: 15,
+          type: BottomNavigationBarType.fixed,
         ),
       ),
     );
+  }
+
+  void _onTap(int index) {
+    _selectedIndex = index;
+    setState(() {});
   }
 }

@@ -1,7 +1,7 @@
-import 'package:app_desafio/app/data/repositories/dogs/dogs_repository.dart';
-import 'package:app_desafio/app/data/repositories/dogs/dogs_repository_impl.dart';
-import 'package:app_desafio/app/data/services/dogs/dogs_service.dart';
-import 'package:app_desafio/app/data/services/dogs/dogs_service_impl.dart';
+import 'package:app_desafio/app/data/repositories/breeds/breeds_repository.dart';
+import 'package:app_desafio/app/data/repositories/breeds/breeds_repository_impl.dart';
+import 'package:app_desafio/app/data/services/breeds/breeds_service.dart';
+import 'package:app_desafio/app/data/services/breeds/breeds_service_impl.dart';
 import 'package:app_desafio/app/modules/home/home_module.dart';
 import 'package:app_desafio/app/modules/login/login_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -17,9 +17,9 @@ class AppModule extends Module {
         Bind.lazySingleton<AuthUserService>((i) => AuthUserServiceImpl()),
         Bind.lazySingleton<AuthUserRepository>(
             (i) => AuthUserRepositoryImpl(authUserService: i())),
-        Bind.lazySingleton<DogsRepository>(
-            (i) => DogsRepositoryImpl(dogsService: i())),
-        Bind.lazySingleton<DogsService>((i) => DogsServiceImpl()),
+        Bind.lazySingleton<BreedsRepository>(
+            (i) => BreedsRepositoryImpl(service: i())),
+        Bind.lazySingleton<BreedsService>((i) => BreedsServiceImpl()),
       ];
 
   @override
