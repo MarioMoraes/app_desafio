@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app_desafio/app/data/models/image_model.dart';
+import 'package:app_desafio/app/data/models/image_model_cat.dart';
 import 'package:app_desafio/app/data/models/size_model.dart';
 
 class CatsModel {
@@ -40,8 +40,8 @@ class CatsModel {
   int shortLegs;
   String wikipediaUrl;
   int hypoallergenic;
-  String referenceImageId;
-  ImageModel image;
+  String? referenceImageId;
+  ImageModelCat? image;
 
   CatsModel({
     required this.weight,
@@ -80,8 +80,8 @@ class CatsModel {
     required this.shortLegs,
     required this.wikipediaUrl,
     required this.hypoallergenic,
-    required this.referenceImageId,
-    required this.image,
+    this.referenceImageId,
+    this.image,
   });
 
   Map<String, dynamic> toMap() {
@@ -123,7 +123,7 @@ class CatsModel {
       'wikipediaUrl': wikipediaUrl,
       'hypoallergenic': hypoallergenic,
       'referenceImageId': referenceImageId,
-      'image': image.toMap(),
+      'image': image?.toMap(),
     };
   }
 
@@ -132,41 +132,41 @@ class CatsModel {
       weight: SizeModel.fromMap(map['weight']),
       id: map['id'] ?? '',
       name: map['name'] ?? '',
-      cfaUrl: map['cfa_url'] ?? '',
-      vetstreetUrl: map['vetstreet_url'] ?? '',
-      vcahospitalsUrl: map['vcahospitals_url'] ?? '',
+      cfaUrl: map['cfaUrl'] ?? '',
+      vetstreetUrl: map['vetstreetUrl'] ?? '',
+      vcahospitalsUrl: map['vcahospitalsUrl'] ?? '',
       temperament: map['temperament'] ?? '',
       origin: map['origin'] ?? '',
-      countryCodes: map['country_codes'] ?? '',
-      countryCode: map['country_code'] ?? '',
+      countryCodes: map['countryCodes'] ?? '',
+      countryCode: map['countryCode'] ?? '',
       description: map['description'] ?? '',
-      lifeSpan: map['life_span'] ?? '',
+      lifeSpan: map['lifeSpan'] ?? '',
       indoor: map['indoor']?.toInt() ?? 0,
       lap: map['lap']?.toInt() ?? 0,
-      altNames: map['alt_names'] ?? '',
+      altNames: map['altNames'] ?? '',
       adaptability: map['adaptability']?.toInt() ?? 0,
-      affectionLevel: map['affection_level']?.toInt() ?? 0,
-      childFriendly: map['child_friendly']?.toInt() ?? 0,
-      dogFriendly: map['dog_friendly']?.toInt() ?? 0,
-      energyLevel: map['energy_level']?.toInt() ?? 0,
+      affectionLevel: map['affectionLevel']?.toInt() ?? 0,
+      childFriendly: map['childFriendly']?.toInt() ?? 0,
+      dogFriendly: map['dogFriendly']?.toInt() ?? 0,
+      energyLevel: map['energyLevel']?.toInt() ?? 0,
       grooming: map['grooming']?.toInt() ?? 0,
-      healthIssues: map['health_issues']?.toInt() ?? 0,
+      healthIssues: map['healthIssues']?.toInt() ?? 0,
       intelligence: map['intelligence']?.toInt() ?? 0,
-      sheddingLevel: map['shedding_level']?.toInt() ?? 0,
-      socialNeeds: map['social_needs']?.toInt() ?? 0,
-      strangerFriendly: map['stranger_friendly']?.toInt() ?? 0,
+      sheddingLevel: map['sheddingLevel']?.toInt() ?? 0,
+      socialNeeds: map['socialNeeds']?.toInt() ?? 0,
+      strangerFriendly: map['strangerFriendly']?.toInt() ?? 0,
       vocalisation: map['vocalisation']?.toInt() ?? 0,
       experimental: map['experimental']?.toInt() ?? 0,
       hairless: map['hairless']?.toInt() ?? 0,
       natural: map['natural']?.toInt() ?? 0,
       rare: map['rare']?.toInt() ?? 0,
       rex: map['rex']?.toInt() ?? 0,
-      suppressedTail: map['suppressed_tail']?.toInt() ?? 0,
-      shortLegs: map['short_legs']?.toInt() ?? 0,
-      wikipediaUrl: map['wikipedia_url'] ?? '',
+      suppressedTail: map['suppressedTail']?.toInt() ?? 0,
+      shortLegs: map['shortLegs']?.toInt() ?? 0,
+      wikipediaUrl: map['wikipediaUrl'] ?? '',
       hypoallergenic: map['hypoallergenic']?.toInt() ?? 0,
-      referenceImageId: map['reference_image_id'] ?? '',
-      image: ImageModel.fromMap(map['image']),
+      referenceImageId: map['referenceImageId'],
+      image: map['image'] != null ? ImageModelCat.fromMap(map['image']) : null,
     );
   }
 

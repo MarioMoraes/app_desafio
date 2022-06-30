@@ -18,7 +18,9 @@ class HomeController extends Cubit<HomeState> {
     try {
       emit(HomeStateLoading());
       var listDogs = await _breedsRepository.getDogs();
-      emit(HomeStateLoaded(listDogs: listDogs));
+      var listCats = await _breedsRepository.getCats();
+
+      emit(HomeStateLoaded(listDogs: listDogs, listCats: listCats));
     } catch (e, s) {
       log('Erro na API', error: e, stackTrace: s);
       emit(HomeStateError());

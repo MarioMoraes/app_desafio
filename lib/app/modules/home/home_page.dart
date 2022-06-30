@@ -78,13 +78,14 @@ class _HomePageState extends State<HomePage> {
                     return ListView.separated(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 10),
-                      itemCount: state.listDogs!.length,
+                      itemCount: state.listCats!.length,
                       itemBuilder: (context, index) {
                         return CardDog(
-                          name: state.listDogs![index].name,
-                          bredFor: state.listDogs![index].bredFor,
-                          lifeSpan: state.listDogs![index].lifeSpan,
-                          image: state.listDogs![index].image.url,
+                          name: state.listCats![index].name,
+                          bredFor:
+                              state.listCats![index].adaptability.toString(),
+                          lifeSpan: state.listCats![index].lifeSpan,
+                          image: state.listCats![index].image!.url,
                         );
                       },
                       separatorBuilder: (context, index) => const Divider(

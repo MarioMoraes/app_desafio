@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:app_desafio/app/core/exceptions/failure.dart';
 import 'package:app_desafio/app/data/models/cats_model.dart';
 import 'package:app_desafio/app/data/models/dogs_model.dart';
 import 'package:dio/dio.dart';
@@ -26,6 +27,16 @@ class BreedsServiceImpl implements BreedsService {
 
   @override
   Future<List<CatsModel>> getCats() async {
-    return [];
+    try {
+      final response = await _dio.get('https://api.thecatapi.com/v1/breeds');
+
+      final listBreed = await response.data
+          .map<CatsModel>((e) => CatsModel.fromMap(e))
+          .toList();
+      return listBreed;
+    } on Failure catch (e, s) {
+      log('Erro Endpoint Cats', error: e, stackTrace: s);
+      return [];
+    }
   }
 }

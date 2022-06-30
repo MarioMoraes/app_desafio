@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app_desafio/app/data/models/image_model.dart';
+import 'package:app_desafio/app/data/models/image_model_dog.dart';
 import 'package:app_desafio/app/data/models/size_model.dart';
 
 class DogsModel {
@@ -14,7 +14,7 @@ class DogsModel {
   String referenceImageId;
   SizeModel weight;
   SizeModel height;
-  ImageModel image;
+  ImageModelDog image;
 
   DogsModel({
     required this.id,
@@ -58,7 +58,7 @@ class DogsModel {
       referenceImageId: map['reference_image_id'] ?? '',
       weight: SizeModel.fromMap(map['weight']),
       height: SizeModel.fromMap(map['height']),
-      image: ImageModel.fromMap(map['image']),
+      image: ImageModelDog.fromMap(map['image']),
     );
   }
 

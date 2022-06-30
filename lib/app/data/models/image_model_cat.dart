@@ -1,16 +1,16 @@
 import 'dart:convert';
 
-class ImageModel {
+class ImageModelCat {
   String id;
   String url;
   int height;
-  int weight;
+  int width;
 
-  ImageModel({
+  ImageModelCat({
     required this.id,
     required this.url,
     required this.height,
-    required this.weight,
+    required this.width,
   });
 
   Map<String, dynamic> toMap() {
@@ -18,21 +18,21 @@ class ImageModel {
       'id': id,
       'url': url,
       'height': height,
-      'weight': weight,
+      'width': width,
     };
   }
 
-  factory ImageModel.fromMap(Map<String, dynamic> map) {
-    return ImageModel(
+  factory ImageModelCat.fromMap(Map<String, dynamic> map) {
+    return ImageModelCat(
       id: map['id'] ?? '',
       url: map['url'] ?? '',
       height: map['height']?.toInt() ?? 0,
-      weight: map['weight']?.toInt() ?? 0,
+      width: map['width']?.toInt() ?? 0,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory ImageModel.fromJson(String source) =>
-      ImageModel.fromMap(json.decode(source));
+  factory ImageModelCat.fromJson(String source) =>
+      ImageModelCat.fromMap(json.decode(source));
 }
