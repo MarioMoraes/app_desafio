@@ -9,8 +9,5 @@ class AuthUserRepositoryImpl implements AuthUserRepository {
   }) : _authUserService = authUserService;
 
   @override
-  Future<bool> login(String email) async {
-    final auth = await _authUserService.login(email);
-    return auth;
-  }
+  Future<bool> login(String email) async => await _authUserService.login(email);
 }

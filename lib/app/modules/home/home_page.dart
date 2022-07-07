@@ -1,4 +1,5 @@
 import 'package:app_desafio/app/modules/home/controller/home_controller.dart';
+import 'package:app_desafio/app/modules/home/widgets/card_cat.dart';
 import 'package:app_desafio/app/modules/home/widgets/card_dog.dart';
 import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
@@ -80,11 +81,9 @@ class _HomePageState extends State<HomePage> {
                           horizontal: 10, vertical: 10),
                       itemCount: state.listCats!.length,
                       itemBuilder: (context, index) {
-                        return CardDog(
+                        return CardCat(
                           name: state.listCats![index].name,
-                          bredFor:
-                              state.listCats![index].adaptability.toString(),
-                          lifeSpan: state.listCats![index].lifeSpan,
+                          description: state.listCats![index].description,
                           image: state.listCats![index].image!.url,
                         );
                       },

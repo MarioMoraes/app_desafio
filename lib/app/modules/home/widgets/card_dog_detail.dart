@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
-class CardDogDetail extends StatelessWidget {
+class CardDogDetail extends StatefulWidget {
   const CardDogDetail({Key? key}) : super(key: key);
+
+  @override
+  State<CardDogDetail> createState() => _CardDogDetailState();
+}
+
+class _CardDogDetailState extends State<CardDogDetail> {
+  final teste = Modular.args.data;
+
+  @override
+  void initState() {
+    super.initState();
+    print(teste);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +23,11 @@ class CardDogDetail extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Detail'),
       ),
-      body: Container(),
+      body: Text(
+        Modular.args.data.toString(),
+        style: const TextStyle(
+            fontSize: 20, fontWeight: FontWeight.bold, color: Colors.red),
+      ),
     );
   }
 }
